@@ -1,0 +1,19 @@
+name: Sync Planning
+"on":
+  push:
+    paths:
+      - '.planning/**'
+      - 'tasks.md'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    permissions:
+      issues: write
+      contents: read
+    uses: gptcompany/claude-config/.github/workflows/_reusable-sync-planning.yml@main
+    secrets: inherit
+    with:
+      framework: 'auto'
+      create-project: true
+      sync-todos: true
